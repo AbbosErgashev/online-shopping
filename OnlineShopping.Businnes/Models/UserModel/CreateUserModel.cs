@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace OnlineShopping.Businnes.Models;
+namespace OnlineShopping.Businnes.Models.UserModel;
 
-public class UserModel
+public class CreateUserModel
 {
     [MaxLength(32)]
     [JsonPropertyName("first_name")]
