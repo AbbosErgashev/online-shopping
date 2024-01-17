@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopping.API", "OnlineShopping.API\OnlineShopping.API.csproj", "{9F1E59FA-0997-407F-9C38-44D6A8CBF365}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShopping.API", "OnlineShopping.API\OnlineShopping.API.csproj", "{9F1E59FA-0997-407F-9C38-44D6A8CBF365}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopping.Businnes", "OnlineShopping.Businnes\OnlineShopping.Businnes.csproj", "{DC6BD0A7-365C-44C4-9626-806890E93DD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShopping.Businnes", "OnlineShopping.Businnes\OnlineShopping.Businnes.csproj", "{DC6BD0A7-365C-44C4-9626-806890E93DD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopping.Infrastructure", "OnlineShopping.Infrastructure\OnlineShopping.Infrastructure.csproj", "{DE080C24-2F37-4D0B-B4E5-4C4B86789ABB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShopping.Infrastructure", "OnlineShopping.Infrastructure\OnlineShopping.Infrastructure.csproj", "{DE080C24-2F37-4D0B-B4E5-4C4B86789ABB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
