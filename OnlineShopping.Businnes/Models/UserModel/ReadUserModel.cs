@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OnlineShopping.Businnes.Models.UserModel;
 
-public class ReadUserModel : EntityBase
+public class ReadUserModel : Entity
 {
 
     [MaxLength(32)]
