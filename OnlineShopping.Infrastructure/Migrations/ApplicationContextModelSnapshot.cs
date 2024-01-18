@@ -31,22 +31,18 @@ namespace OnlineShopping.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -61,11 +57,11 @@ namespace OnlineShopping.Infrastructure.Migrations
                         {
                             Id = 1,
                             Address = "Tashkent",
-                            CreatedAt = new DateTime(2024, 1, 17, 6, 7, 21, 757, DateTimeKind.Utc).AddTicks(1591),
+                            CreatedAt = new DateTime(2024, 1, 18, 11, 29, 32, 648, DateTimeKind.Utc).AddTicks(7613),
                             FirstName = "Abbos",
                             LastName = "Ergashev",
                             Phone = "+998939887773",
-                            UpdatedAt = new DateTime(2024, 1, 17, 6, 7, 21, 757, DateTimeKind.Utc).AddTicks(1592)
+                            UpdatedAt = new DateTime(2024, 1, 18, 11, 29, 32, 648, DateTimeKind.Utc).AddTicks(7615)
                         });
                 });
 #pragma warning restore 612, 618

@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace OnlineShopping.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,10 +18,10 @@ namespace OnlineShopping.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false),
-                    Phone = table.Column<string>(type: "text", nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true),
+                    Phone = table.Column<string>(type: "text", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -33,7 +33,7 @@ namespace OnlineShopping.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "CreatedAt", "FirstName", "LastName", "Phone", "UpdatedAt" },
-                values: new object[] { 1, "Tashkent", new DateTime(2024, 1, 17, 6, 7, 21, 757, DateTimeKind.Utc).AddTicks(1591), "Abbos", "Ergashev", "+998939887773", new DateTime(2024, 1, 17, 6, 7, 21, 757, DateTimeKind.Utc).AddTicks(1592) });
+                values: new object[] { 1, "Tashkent", new DateTime(2024, 1, 18, 11, 29, 32, 648, DateTimeKind.Utc).AddTicks(7613), "Abbos", "Ergashev", "+998939887773", new DateTime(2024, 1, 18, 11, 29, 32, 648, DateTimeKind.Utc).AddTicks(7615) });
         }
 
         /// <inheritdoc />
