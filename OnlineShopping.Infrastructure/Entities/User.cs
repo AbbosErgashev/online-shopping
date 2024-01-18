@@ -2,7 +2,7 @@
 
 namespace OnlineShopping.Infrastructure.Entities;
 
-public class User : Entity
+public class User : EntityBase
 {
     public required string FirstName { get; set; }
     public required string LastName { get; set; }

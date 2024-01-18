@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using OnlineShopping.Businnes.Models.UserModel;
+using OnlineShopping.Businnes.Models;
 using OnlineShopping.Infrastructure.Entities;
 
 namespace OnlineShopping.Businnes.Mappers;
@@ -8,8 +8,6 @@ public class IEMapper : Profile
 {
     public IEMapper()
     {
-        CreateMap<User, CreateUserModel>().ReverseMap();
-        CreateMap<User, UpdateUserModel>().ReverseMap();
-        CreateMap<User, ReadUserModel>().ReverseMap();
+        CreateMap<User, UserModel>().ReverseMap();
     }
 }
