@@ -10,7 +10,7 @@ public static partial class DefaultValue
         modelBuilder.Entity<User>().HasData(
             new User
             {
-                Id = 1,
+                UserId = 1,
                 FirstName = "Abbos",
                 LastName = "Ergashev",
                 Address = "Tashkent",

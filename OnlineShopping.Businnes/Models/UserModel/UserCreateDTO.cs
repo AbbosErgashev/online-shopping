@@ -3,7 +3,10 @@ using System.Text.Json.Serialization;
 
 namespace OnlineShopping.Businnes.Models.UserModel;
 
-public class CreateUserModel
+/// <summary>
+/// User Create DTO
+/// </summary>
+public class UserCreateDTO
 {
     [MaxLength(32)]
     [JsonPropertyName("first_name")]

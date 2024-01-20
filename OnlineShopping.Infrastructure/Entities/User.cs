@@ -1,9 +1,8 @@
-﻿using OnlineShopping.Infrastructure.Entites.Base;
+﻿namespace OnlineShopping.Infrastructure.Entities;
 
-namespace OnlineShopping.Infrastructure.Entities;
-
-public class User : Entity
+public class User
 {
+    public int UserId { get; set; }
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
     public required string Address { get; set; }
