@@ -1,11 +1,14 @@
-﻿using OnlineShopping.Infrastructure.Entites.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace OnlineShopping.Businnes.Models.UserModel;
 
-public class ReadUserModel : Entity
+/// <summary>
+/// User Read DTO
+/// </summary>
+public class UserReadDTO
 {
+    public int UserId { get; set; }
 
     [MaxLength(32)]
     [JsonPropertyName("first_name")]

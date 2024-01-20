@@ -11,28 +11,28 @@ public class UserRepository : IUserRepository
 
     public UserRepository(ApplicationContext context) => _context = context;
 
-    public async Task CreateUser(User user)
+    public async Task Create(User user)
     {
         if (user is null) throw new ArgumentNullException(nameof(user));
 
         await _context.AddAsync(user);
     }
 
-    public void DeleteUser(User user)
+    public void Delete(User user)
     {
         if (user is null) throw new ArgumentNullException(nameof(user));
 
         _context.Users.Remove(user);
     }
 
-    public async Task<IEnumerable<User>> GetAllUsers() => await _context.Users.ToListAsync();
+    public async Task<IEnumerable<User>> GetAll() => await _context.Users.ToListAsync();
 
-    public async Task<User> GetUserById(int id) => await _context.Users.FirstOrDefaultAsync(x => x.Id == id)
+    public async Task<User> GetById(int id) => await _context.Users.FirstOrDefaultAsync(x => x.UserId == id)
                                                 ?? throw new ArgumentException();
 
     public async Task<bool> SaveChangesAsync() => await _context.SaveChangesAsync() > 0;
 
-    public async Task UpdateUser(User user)
+    public async Task Update(User user)
     {
         if (user is null) throw new ArgumentNullException(nameof(user));
 

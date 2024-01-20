@@ -16,16 +16,16 @@ public class UserController : ControllerBase
 
     public UserController(IMapper mapper, IUserRepository user)
     {
-        this.mapper = mapper;
         this.user = user;
+        this.mapper = mapper;
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateUser(CreateUserModel userModel)
+    public async Task<IActionResult> Create(UserCreateDTO userModel)
     {
         var createUser = mapper.Map<User>(userModel);
 
-        await user.CreateUser(createUser);
+        await user.Create(createUser);
 
         await user.SaveChangesAsync();
 
@@ -33,35 +33,38 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllUsers()
+    public async Task<IActionResult> GetAll()
     {
-        var getAllUsers = await user.GetAllUsers();
+        var getAllUsers = await user.GetAll();
 
-        if (getAllUsers is null) return NoContent();
+        if (getAllUsers is null) 
+            return NoContent();
 
-        return Ok(mapper.Map<IEnumerable<ReadUserModel>>(getAllUsers));
+        return Ok(mapper.Map<IEnumerable<UserReadDTO>>(getAllUsers));
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetUserById(int id)
+    public async Task<IActionResult> GetById(int id)
     {
-        var getUserById = await user.GetUserById(id);
+        var getUserById = await user.GetById(id);
 
-        if (getUserById is null) return NotFound();
+        if (getUserById is null) 
+            return NotFound();
 
         await user.SaveChangesAsync();
 
-        return Ok(mapper.Map<ReadUserModel>(getUserById));
+        return Ok(mapper.Map<UserReadDTO>(getUserById));
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteUser(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        var deleteUserById = await user.GetUserById(id);
+        var deleteUserById = await user.GetById(id);
 
-        if (deleteUserById is null) return NoContent();
+        if (deleteUserById is null) 
+            return NoContent();
 
-        user.DeleteUser(deleteUserById);
+        user.Delete(deleteUserById);
 
         await user.SaveChangesAsync();
 
@@ -69,15 +72,15 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUser(int id, UpdateUserModel model)
+    public async Task<IActionResult> UpdateUser(int id, UserUpdateDTO update)
     {
-        var getUserByIdForUpdate = await user.GetUserById(id);
+        var getById = await user.GetById(id);
 
-        if (getUserByIdForUpdate is null) return NotFound();
+        if (getById is null) return NotFound();
 
-        mapper.Map(model, getUserByIdForUpdate);
+        mapper.Map(update, getById);
 
-        await user.UpdateUser(getUserByIdForUpdate);
+        await user.Update(getById);
 
         await user.SaveChangesAsync();
 

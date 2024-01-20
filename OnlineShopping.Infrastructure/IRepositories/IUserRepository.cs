@@ -2,12 +2,15 @@
 
 namespace OnlineShopping.Infrastructure.IRepositories;
 
+/// <summary>
+/// User Interface
+/// </summary>
 public interface IUserRepository
 {
-    public Task<IEnumerable<User>> GetAllUsers();
-    public Task<User> GetUserById(int id);
-    public Task CreateUser(User user);
-    public Task UpdateUser(User user);
-    public void DeleteUser(User user);
-    public Task<bool> SaveChangesAsync();
+    Task<IEnumerable<User>> GetAll();
+    Task<User> GetById(int id);
+    Task Create(User user);
+    Task Update(User user);
+    void Delete(User user);
+    Task<bool> SaveChangesAsync();
 }
