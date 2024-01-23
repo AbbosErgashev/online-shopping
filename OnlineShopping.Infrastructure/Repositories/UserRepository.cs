@@ -11,28 +11,34 @@ public class UserRepository : IUserRepository
 
     public UserRepository(ApplicationContext context) => _context = context;
 
-    public async Task Create(User user)
+    public async Task CreateUserRepository(User user)
     {
         if (user is null) throw new ArgumentNullException(nameof(user));
 
-        await _context.AddAsync(user);
+        await _context.Users.AddAsync(user);
     }
 
-    public void Delete(User user)
+    public void DeleteUserRepository(User user)
     {
-        if (user is null) throw new ArgumentNullException(nameof(user));
-
         _context.Users.Remove(user);
     }
 
-    public async Task<IEnumerable<User>> GetAll() => await _context.Users.ToListAsync();
+    public async Task<IEnumerable<User>> GetAllUsers()
+    {
+        return await _context.Users.ToListAsync();
+    }
 
-    public async Task<User> GetById(int id) => await _context.Users.FirstOrDefaultAsync(x => x.UserId == id)
-                                                ?? throw new ArgumentException();
+#pragma warning disable
+    public async Task<User> GetUserById(int id)
+    {
+        return await _context.Users.FirstOrDefaultAsync(x => x.UserId == id);
+    }
 
-    public async Task<bool> SaveChangesAsync() => await _context.SaveChangesAsync() > 0;
-
-    public async Task Update(User user)
+    public async Task<bool> SaveChangesAsync()
+    {
+        return await _context.SaveChangesAsync() > 0;
+    }
+    public async Task UpdateUserRepository(User user)
     {
         if (user is null) throw new ArgumentNullException(nameof(user));
 

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using OnlineShopping.Businnes.IServices;
 using OnlineShopping.Businnes.Mappers;
+using OnlineShopping.Businnes.Services;
 using OnlineShopping.Infrastructure.Datas;
 using OnlineShopping.Infrastructure.IRepositories;
 using OnlineShopping.Infrastructure.Repositories;
@@ -18,8 +20,10 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
 builder.Services.AddAutoMapper(typeof(UserMapper));
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

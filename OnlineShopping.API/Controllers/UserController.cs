@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShopping.Businnes.IServices;
 using OnlineShopping.Businnes.Models.UserModel;
-using OnlineShopping.Infrastructure.Entities;
-using OnlineShopping.Infrastructure.IRepositories;
 
 namespace OnlineShopping.API.Controllers;
 
@@ -11,79 +9,77 @@ namespace OnlineShopping.API.Controllers;
 
 public class UserController : ControllerBase
 {
-    private readonly IMapper mapper;
-    private readonly IUserRepository user;
+    private readonly IUserService _userService;
 
-    public UserController(IMapper mapper, IUserRepository user)
-    {
-        this.user = user;
-        this.mapper = mapper;
-    }
+    public UserController(IUserService userService) => _userService = userService;
 
-    [HttpPost]
+    [HttpPost("create-user")]
     public async Task<IActionResult> Create(UserCreateDTO userModel)
     {
-        var createUser = mapper.Map<User>(userModel);
-
-        await user.Create(createUser);
-
-        await user.SaveChangesAsync();
-
-        return Created("", createUser);
+        try
+        {
+            await _userService.CreateUserService(userModel);
+            return Ok(userModel);
+        }
+        catch
+        {
+            return BadRequest("user not created");
+        }
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetAll()
+    [HttpGet("get-all")]
+    public async Task<IActionResult> GetAllUsers()
     {
-        var getAllUsers = await user.GetAll();
-
-        if (getAllUsers is null) 
-            return NoContent();
-
-        return Ok(mapper.Map<IEnumerable<UserReadDTO>>(getAllUsers));
+        try
+        {
+            var result = await _userService.GetAllUsers();
+            return Ok(result);
+        }
+        catch
+        {
+            return BadRequest("users not found");
+        }
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
+    [HttpGet("get-by-id")]
+    public async Task<IActionResult> GetUserById(int id)
     {
-        var getUserById = await user.GetById(id);
-
-        if (getUserById is null) 
-            return NotFound();
-
-        await user.SaveChangesAsync();
-
-        return Ok(mapper.Map<UserReadDTO>(getUserById));
+        try
+        {
+            var getUser = await _userService.GetUserById(id);
+            return Ok(getUser);
+        }
+        catch
+        {
+            return BadRequest("user not found");
+        }
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("delete")]
     public async Task<IActionResult> Delete(int id)
     {
-        var deleteUserById = await user.GetById(id);
-
-        if (deleteUserById is null) 
-            return NoContent();
-
-        user.Delete(deleteUserById);
-
-        await user.SaveChangesAsync();
-
-        return NoContent();
+        try
+        {
+            await _userService.DeleteUserService(id);
+            return Ok("user deleted");
+        }
+        catch
+        {
+            return BadRequest("user not found");
+        }
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("update")]
     public async Task<IActionResult> UpdateUser(int id, UserUpdateDTO update)
     {
-        var getById = await user.GetById(id);
-
-        if (getById is null) return NotFound();
-
-        mapper.Map(update, getById);
-
-        await user.Update(getById);
-
-        await user.SaveChangesAsync();
-
-        return NoContent();
+        try
+        {
+            await _userService.UpdateUserService(id, update);
+            return Ok(update);
+        }
+        catch
+        {
+            return BadRequest("user not found and not updated");
+        }
     }
 }

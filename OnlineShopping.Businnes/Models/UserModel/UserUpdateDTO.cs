@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace OnlineShopping.Businnes.Models.UserModel;
 
 /// <summary>
-/// User Update DTO
+/// User UpdateUserRepository DTO
 /// </summary>
 public class UserUpdateDTO
 {
