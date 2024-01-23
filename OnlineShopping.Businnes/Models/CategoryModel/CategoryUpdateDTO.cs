@@ -3,7 +3,7 @@
 namespace OnlineShopping.Businnes.Models.CategoryModel;
 
 /// <summary>
-/// Category Update DTO
+/// Category UpdateUserRepository DTO
 /// </summary>
 public class CategoryUpdateDTO
 {

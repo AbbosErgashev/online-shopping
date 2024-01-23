@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShopping.Businnes.IServices;
 using OnlineShopping.Businnes.Models.CategoryModel;
-using OnlineShopping.Infrastructure.Entities;
-using OnlineShopping.Infrastructure.IRepositories;
 
 namespace OnlineShopping.API.Controllers;
 
@@ -11,80 +9,80 @@ namespace OnlineShopping.API.Controllers;
 
 public class CategoryController : ControllerBase
 {
-    private readonly IMapper mapper;
-    private readonly ICategoryRepository category;
+    private readonly ICategoryService _category;
 
-    public CategoryController(IMapper mapper, ICategoryRepository category)
+    public CategoryController(ICategoryService category)
     {
-        this.mapper = mapper;
-        this.category = category;
+        _category = category;
     }
 
-    [HttpPost]
+    [HttpPost("create")]
     public async Task<IActionResult> Create(CategoryCreateDTO create)
     {
-        var createCategory = mapper.Map<Category>(create);
-
-        await category.Create(createCategory);
-
-        await category.SaveChangesAsync();
-
-        return Created("", createCategory);
+        try
+        {
+            await _category.CreateCategory(create);
+            return Ok(create);
+        }
+        catch
+        {
+            return BadRequest("user not created");
+        }
     }
 
-    [HttpGet]
+    [HttpGet("get-all")]
     public async Task<IActionResult> GetAll()
     {
-        var getAll = await category.GetAll();
-
-        if (category is null)
-            return NoContent();
-
-        return Ok(mapper.Map<IEnumerable<CategoryReadDTO>>(getAll));
+        try
+        {
+            var getAll = await _category.GetCategoriesAsync();
+            return Ok(getAll);
+        }
+        catch
+        {
+            return BadRequest("categories not found");
+        }
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("get-by-id")]
     public async Task<IActionResult> GetById(int id)
     {
-        var getById = await category.GetById(id);
-
-        if (getById is null)
-            return NotFound();
-
-        await category.SaveChangesAsync();
-
-        return Ok(mapper.Map<CategoryReadDTO>(getById));
+        try
+        {
+            var result = await _category.GetCategoryById(id);
+            return Ok(result);
+        }
+        catch
+        {
+            return BadRequest("category not found");
+        }
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("delete")]
     public async Task<IActionResult> Delete(int id)
     {
-        var getByIdDelete = await category.GetById(id);
-
-        if (getByIdDelete is null)
-            return NoContent();
-
-        category.Delete(getByIdDelete);
-
-        await category.SaveChangesAsync();
-
-        return NoContent(); 
+        try
+        {
+            await _category.DeleteCategory(id);
+            return Ok("category deleted");
+        }
+        catch
+        {
+            return BadRequest("category not found");
+        }
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("update")]
     public async Task<IActionResult> Update(int id, CategoryUpdateDTO updateCategory)
     {
-        var getByIdUpdate = await category.GetById(id);
-
-        if (getByIdUpdate is null)
-            return NotFound();
-
-        mapper.Map(updateCategory, getByIdUpdate);
-
-        await category.Update(getByIdUpdate);
-
-        await category.SaveChangesAsync();
-
-        return NoContent();
+        try
+        {
+            await _category.UpdateCategory(id, updateCategory);
+            return Ok(updateCategory);
+        }
+        catch
+        {
+            return BadRequest("category not found also not deleted");
+        }
     }
 }

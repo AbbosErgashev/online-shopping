@@ -7,10 +7,10 @@ namespace OnlineShopping.Infrastructure.IRepositories;
 /// </summary>
 public interface ICategoryRepository
 {
-    Task<IEnumerable<Category>> GetAll();
-    Task<Category?> GetById(int id);
-    Task Create(Category category);
-    Task Update(Category category);
-    void Delete(Category category);
+    Task<IEnumerable<Category>> GetAllCategories();
+    Task<Category> GetCategoryById(int id);
+    Task CreateCategoryRepository(Category category);
+    Task UpdateCategoryRepository(Category category);
+    void DeleteCategoryRepository(Category category);
     Task<bool> SaveChangesAsync();
 }

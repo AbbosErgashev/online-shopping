@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace OnlineShopping.Businnes.Models.UserModel;
 
 /// <summary>
-/// User Create DTO
+/// User CreateCategoryRepository DTO
 /// </summary>
 public class UserCreateDTO
 {

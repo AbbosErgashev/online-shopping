@@ -11,8 +11,8 @@ using OnlineShopping.Infrastructure.Datas;
 namespace OnlineShopping.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240120045150_Initial")]
-    partial class Initial
+    [Migration("20240121165439_Initial_3")]
+    partial class Initial_3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,7 +41,7 @@ namespace OnlineShopping.Infrastructure.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("OnlineShopping.Infrastructure.Entities.UserReadDTO", b =>
+            modelBuilder.Entity("OnlineShopping.Infrastructure.Entities.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()

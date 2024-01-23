@@ -3,7 +3,7 @@
 namespace OnlineShopping.Businnes.Models.CategoryModel;
 
 /// <summary>
-/// Category Create DTO
+/// Category CreateCategoryRepository DTO
 /// </summary>
 public class CategoryCreateDTO
 {
