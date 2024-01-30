@@ -1,8 +1,11 @@
-﻿namespace OnlineShopping.Infrastructure.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace OnlineShopping.Infrastructure.Entities;
 
 public class User
 {
-    public int UserId { get; set; }
+    [Key]
+    public int Id { get; set; }
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
     public required string Address { get; set; }

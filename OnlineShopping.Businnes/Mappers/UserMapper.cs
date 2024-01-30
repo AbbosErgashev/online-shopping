@@ -8,8 +8,8 @@ public class UserMapper : Profile
 {
     public UserMapper()
     {
-        CreateMap<User, UserCreateDTO>().ReverseMap();
-        CreateMap<User, UserUpdateDTO>().ReverseMap();
-        CreateMap<User, UserReadDTO>().ReverseMap();
+        CreateMap<User, UserCreateModel>().ReverseMap();
+        CreateMap<User, UserUpdateModel>().ReverseMap();
+        CreateMap<User, UserReadModel>().ReverseMap();
     }
 }

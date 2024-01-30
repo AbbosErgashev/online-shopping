@@ -40,10 +40,18 @@ namespace OnlineShopping.Infrastructure.Migrations
                     table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "UserId", "Address", "FirstName", "LastName", "Phone" },
-                values: new object[] { 1, "Tashkent", "Abbos", "Ergashev", "+998939887773" });
+            migrationBuilder.CreateTable(
+                name: "Warehouses",
+                columns: table => new
+                {
+                    WarehouseId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Warehouses", x => x.WarehouseId);
+                });
         }
 
         /// <inheritdoc />
@@ -54,6 +62,9 @@ namespace OnlineShopping.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Warehouses");
         }
     }
 }

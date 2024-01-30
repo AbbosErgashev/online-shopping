@@ -17,58 +17,62 @@ public class CategoryService : ICategoryService
         _mapper = mapper;
     }
 
-    public async Task CreateCategory(CategoryCreateDTO category)
+    public async Task CreateCategoryService(CategoryCreateModel category)
     {
         var createCategory = _mapper.Map<Category>(category);
 
         await _categoryRepository.CreateCategoryRepository(createCategory);
 
-        await _categoryRepository.SaveChangesAsync();
+        await _categoryRepository.SaveChangesAsyncCategory();
     }
 
-    public async Task DeleteCategory(int id)
+    public async Task DeleteCategoryService(int id)
     {
         var getCategoryById = await _categoryRepository.GetCategoryById(id);
 
-        if (getCategoryById is null) throw new ArgumentNullException(nameof(getCategoryById));
+        if (getCategoryById is null) 
+            throw new ArgumentNullException(nameof(getCategoryById));
 
         _categoryRepository.DeleteCategoryRepository(getCategoryById);
 
-        await _categoryRepository.SaveChangesAsync();
+        await _categoryRepository.SaveChangesAsyncCategory();
     }
 
-    public async Task<IEnumerable<CategoryReadDTO>> GetCategoriesAsync()
+    public async Task<IEnumerable<CategoryReadModel>> GetAllCategoryService()
     {
         var getAll = await _categoryRepository.GetAllCategories();
 
-        if (getAll is null) throw new ArgumentNullException(nameof(getAll));
+        if (getAll is null) 
+            throw new ArgumentNullException(nameof(getAll));
 
-        var mapped = _mapper.Map<IEnumerable<CategoryReadDTO>>(getAll);
-
-        return mapped;
-    }
-
-    public async Task<CategoryReadDTO> GetCategoryById(int id)
-    {
-        var getById = await _categoryRepository.GetCategoryById(id);
-
-        if (getById is null) throw new ArgumentNullException(nameof(getById));
-
-        var mapped = _mapper.Map<CategoryReadDTO>(getById);
+        var mapped = _mapper.Map<IEnumerable<CategoryReadModel>>(getAll);
 
         return mapped;
     }
 
-    public async Task UpdateCategory(int id, CategoryUpdateDTO category)
+    public async Task<CategoryReadModel> GetCategoryByIdService(int id)
     {
         var getById = await _categoryRepository.GetCategoryById(id);
 
-        if (getById is null) throw new ArgumentNullException(nameof(getById));
+        if (getById is null) 
+            throw new ArgumentNullException(nameof(getById));
+
+        var mapped = _mapper.Map<CategoryReadModel>(getById);
+
+        return mapped;
+    }
+
+    public async Task UpdateCategoryService(int id, CategoryUpdateModel category)
+    {
+        var getById = await _categoryRepository.GetCategoryById(id);
+
+        if (getById is null) 
+            throw new ArgumentNullException(nameof(getById));
 
         _mapper.Map(category, getById);
 
         await _categoryRepository.UpdateCategoryRepository(getById);
 
-        await _categoryRepository.SaveChangesAsync();
+        await _categoryRepository.SaveChangesAsyncCategory();
     }
 }

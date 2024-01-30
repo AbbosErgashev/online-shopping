@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿/*using Microsoft.EntityFrameworkCore;
 using OnlineShopping.Infrastructure.Entities;
 
 namespace OnlineShopping.Infrastructure.Datas.Seeds;
@@ -18,3 +18,4 @@ public static partial class DefaultValue
             });
     }
 }
+*/

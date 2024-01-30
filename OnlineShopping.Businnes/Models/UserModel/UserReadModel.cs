@@ -3,11 +3,11 @@ using System.Text.Json.Serialization;
 
 namespace OnlineShopping.Businnes.Models.UserModel;
 
-/// <summary>
-/// User UpdateUserRepository DTO
-/// </summary>
-public class UserUpdateDTO
+public class UserReadModel
 {
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
     [MaxLength(32)]
     [JsonPropertyName("first_name")]
     public required string FirstName { get; set; }

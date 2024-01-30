@@ -3,9 +3,9 @@
 namespace OnlineShopping.Businnes.Models.CategoryModel;
 
 /// <summary>
-/// Category UpdateUserRepository DTO
+/// Category UpdateRepository DTO
 /// </summary>
-public class CategoryUpdateDTO
+public class CategoryUpdateModel
 {
     [JsonPropertyName("name")]
     public required string Name { get; set; }
