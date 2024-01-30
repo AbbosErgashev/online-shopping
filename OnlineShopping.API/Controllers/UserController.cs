@@ -11,10 +11,13 @@ public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
 
-    public UserController(IUserService userService) => _userService = userService;
+    public UserController(IUserService userService)
+    {
+        _userService = userService;
+    }
 
     [HttpPost("create-user")]
-    public async Task<IActionResult> Create(UserCreateDTO userModel)
+    public async Task<IActionResult> CreateUser(UserCreateModel userModel)
     {
         try
         {
@@ -32,7 +35,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            var result = await _userService.GetAllUsers();
+            var result = await _userService.GetAllUserService();
             return Ok(result);
         }
         catch
@@ -46,7 +49,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            var getUser = await _userService.GetUserById(id);
+            var getUser = await _userService.GetByIdUserService(id);
             return Ok(getUser);
         }
         catch
@@ -56,7 +59,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete("delete")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> DeleteUser(int id)
     {
         try
         {
@@ -70,7 +73,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("update")]
-    public async Task<IActionResult> UpdateUser(int id, UserUpdateDTO update)
+    public async Task<IActionResult> UpdateUser(int id, UserUpdateModel update)
     {
         try
         {

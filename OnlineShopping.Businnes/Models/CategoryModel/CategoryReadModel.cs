@@ -3,10 +3,13 @@
 namespace OnlineShopping.Businnes.Models.CategoryModel;
 
 /// <summary>
-/// Category CreateCategoryRepository DTO
+/// Category Read DTO
 /// </summary>
-public class CategoryCreateDTO
+public class CategoryReadModel
 {
+    [JsonPropertyName("id")]
+    public int CategoryId { get; set; }
+
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 }

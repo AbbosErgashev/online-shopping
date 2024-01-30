@@ -39,7 +39,7 @@ public class CategoryRepository : ICategoryRepository
                                                             ?? throw new ArgumentNullException(nameof(id));
     }
 
-    public async Task<bool> SaveChangesAsync()
+    public async Task<bool> SaveChangesAsyncCategory()
     {
         return await context.SaveChangesAsync() > 0;
     }

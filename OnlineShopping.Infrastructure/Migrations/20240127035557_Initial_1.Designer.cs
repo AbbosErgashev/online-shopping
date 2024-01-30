@@ -11,8 +11,8 @@ using OnlineShopping.Infrastructure.Datas;
 namespace OnlineShopping.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240121133830_Initial_2")]
-    partial class Initial_2
+    [Migration("20240127035557_Initial_1")]
+    partial class Initial_1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,16 +68,23 @@ namespace OnlineShopping.Infrastructure.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            Address = "Tashkent",
-                            FirstName = "Abbos",
-                            LastName = "Ergashev",
-                            Phone = "+998939887773"
-                        });
+            modelBuilder.Entity("OnlineShopping.Infrastructure.Entities.Warehouses.Warehouse", b =>
+                {
+                    b.Property<int>("WarehouseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("WarehouseId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("WarehouseId");
+
+                    b.ToTable("Warehouses");
                 });
 #pragma warning restore 612, 618
         }

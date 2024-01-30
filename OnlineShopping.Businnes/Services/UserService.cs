@@ -17,62 +17,62 @@ public class UserService : IUserService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<UserReadDTO>> GetAllUsers()
+    public async Task<IEnumerable<UserReadModel>> GetAllUserService()
     {
-        var getAllUser = await _userRepository.GetAllUsers();
+        var getAll = await _userRepository.GetAllRepository();
 
-        if (getAllUser is null)
-            throw new ArgumentNullException(nameof(getAllUser));
+        if (getAll is null)
+            throw new ArgumentNullException(nameof(getAll));
 
-        var getMapped = _mapper.Map<IEnumerable<UserReadDTO>>(getAllUser);
+        var mapped = _mapper.Map<IEnumerable<UserReadModel>>(getAll);
 
-        return getMapped;
+        return mapped;
     }
 
-    public async Task<UserReadDTO> GetUserById(int id)
+    public async Task<UserReadModel> GetByIdUserService(int id)
     {
-        var getUserById = await _userRepository.GetUserById(id);
+        var getUserById = await _userRepository.GetByIdRepository(id);
 
         if (getUserById is null)
             throw new ArgumentNullException(nameof(getUserById));
 
-        var getByIdMapped = _mapper.Map<UserReadDTO>(getUserById);
+        var getByIdMapped = _mapper.Map<UserReadModel>(getUserById);
 
         return getByIdMapped;
     }
 
-    public async Task CreateUserService(UserCreateDTO userDto)
+    public async Task CreateUserService(UserCreateModel userDto)
     {
         var createUser = _mapper.Map<User>(userDto);
 
-        await _userRepository.CreateUserRepository(createUser);
+        await _userRepository.CreateRepository(createUser);
 
-        await _userRepository.SaveChangesAsync();
+        await _userRepository.SaveChangesAsyncUser();
     }
 
     public async Task DeleteUserService(int userid)
     {
-        var getUserById = await _userRepository.GetUserById(userid);
+        var getUserById = await _userRepository.GetByIdRepository(userid);
 
         if (getUserById is null)
             throw new ArgumentNullException(nameof(getUserById));
 
-        _userRepository.DeleteUserRepository(getUserById);
+        _userRepository.DeleteRepository(getUserById);
 
-        await _userRepository.SaveChangesAsync();
+        await _userRepository.SaveChangesAsyncUser();
     }
 
-    public async Task UpdateUserService(int updateId, UserUpdateDTO userUpdateDTO)
+    public async Task UpdateUserService(int Id, UserUpdateModel updateModel)
     {
-        var getUserByid = await _userRepository.GetUserById(updateId);
+        var getUserByid = await _userRepository.GetByIdRepository(Id);
 
         if (getUserByid is null)
             throw new ArgumentNullException(nameof(getUserByid));
 
-        _mapper.Map(userUpdateDTO, getUserByid);
+        _mapper.Map(updateModel, getUserByid);
 
-        await _userRepository.UpdateUserRepository(getUserByid);
+        await _userRepository.UpdateRepository(getUserByid);
 
-        await _userRepository.SaveChangesAsync();
+        await _userRepository.SaveChangesAsyncUser();
     }
 }

@@ -8,8 +8,8 @@ public class CategoryMapper : Profile
 {
     public CategoryMapper()
     {
-        CreateMap<Category, CategoryCreateDTO>().ReverseMap();
-        CreateMap<Category, CategoryUpdateDTO>().ReverseMap();
-        CreateMap<Category, CategoryReadDTO>().ReverseMap();
+        CreateMap<Category, CategoryCreateModel>().ReverseMap();
+        CreateMap<Category, CategoryUpdateModel>().ReverseMap();
+        CreateMap<Category, CategoryReadModel>().ReverseMap();
     }
 }

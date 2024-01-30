@@ -17,11 +17,11 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> Create(CategoryCreateDTO create)
+    public async Task<IActionResult> CreateCreategory(CategoryCreateModel create)
     {
         try
         {
-            await _category.CreateCategory(create);
+            await _category.CreateCategoryService(create);
             return Ok(create);
         }
         catch
@@ -31,11 +31,11 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet("get-all")]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAllCategories()
     {
         try
         {
-            var getAll = await _category.GetCategoriesAsync();
+            var getAll = await _category.GetAllCategoryService();
             return Ok(getAll);
         }
         catch
@@ -45,11 +45,11 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet("get-by-id")]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetByIdCategory(int id)
     {
         try
         {
-            var result = await _category.GetCategoryById(id);
+            var result = await _category.GetCategoryByIdService(id);
             return Ok(result);
         }
         catch
@@ -59,11 +59,11 @@ public class CategoryController : ControllerBase
     }
 
     [HttpDelete("delete")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> DeleteCategory(int id)
     {
         try
         {
-            await _category.DeleteCategory(id);
+            await _category.DeleteCategoryService(id);
             return Ok("category deleted");
         }
         catch
@@ -73,11 +73,11 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPut("update")]
-    public async Task<IActionResult> Update(int id, CategoryUpdateDTO updateCategory)
+    public async Task<IActionResult> UpdateCategory(int id, CategoryUpdateModel updateCategory)
     {
         try
         {
-            await _category.UpdateCategory(id, updateCategory);
+            await _category.UpdateCategoryService(id, updateCategory);
             return Ok(updateCategory);
         }
         catch

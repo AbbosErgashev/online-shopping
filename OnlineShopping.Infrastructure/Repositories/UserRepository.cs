@@ -9,39 +9,53 @@ public class UserRepository : IUserRepository
 {
     private readonly ApplicationContext _context;
 
-    public UserRepository(ApplicationContext context) => _context = context;
-
-    public async Task CreateUserRepository(User user)
+    public UserRepository(ApplicationContext context)
     {
-        if (user is null) throw new ArgumentNullException(nameof(user));
-
-        await _context.Users.AddAsync(user);
+        _context = context;
     }
 
-    public void DeleteUserRepository(User user)
-    {
-        _context.Users.Remove(user);
-    }
-
-    public async Task<IEnumerable<User>> GetAllUsers()
+    public async Task<IEnumerable<User>> GetAllRepository()
     {
         return await _context.Users.ToListAsync();
     }
 
-#pragma warning disable
-    public async Task<User> GetUserById(int id)
+    public async Task<User> GetByIdRepository(int id)
     {
-        return await _context.Users.FirstOrDefaultAsync(x => x.UserId == id);
+        var result = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (result == null)
+            throw new Exception($"{nameof(User)} is not found");
+
+        return result;
     }
 
-    public async Task<bool> SaveChangesAsync()
+    public async Task CreateRepository(User user)
     {
-        return await _context.SaveChangesAsync() > 0;
-    }
-    public async Task UpdateUserRepository(User user)
-    {
-        if (user is null) throw new ArgumentNullException(nameof(user));
+        if (user is null) 
+            throw new ArgumentNullException(nameof(user));
+
+        await _context.Users.AddAsync(user);
 
         await _context.SaveChangesAsync();
+    }
+
+    public async void DeleteRepository(User user)
+    {
+        _context.Users.Remove(user);
+
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateRepository(User user)
+    {
+        if (user is null) 
+            throw new ArgumentNullException(nameof(user));
+
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<bool> SaveChangesAsyncUser()
+    {
+        return await _context.SaveChangesAsync() > 0;
     }
 }

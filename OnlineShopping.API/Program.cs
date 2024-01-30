@@ -19,9 +19,11 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 
 builder.Services.AddAutoMapper(typeof(UserMapper));
 
