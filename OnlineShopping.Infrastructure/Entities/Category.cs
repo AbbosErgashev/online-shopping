@@ -5,6 +5,6 @@ namespace OnlineShopping.Infrastructure.Entities;
 public class Category
 {
     [Key]
-    public int CategoryId {  get; set; }
+    public int Id {  get; set; }
     public required string Name { get; set; }
 }

@@ -8,6 +8,6 @@ public interface IUserRepository
     Task<User> GetByIdRepository(int id);
     Task CreateRepository(User user);
     Task UpdateRepository(User user);
-    void DeleteRepository(User user);
+    Task DeleteRepository(User user);
     Task<bool> SaveChangesAsyncUser();
 }
