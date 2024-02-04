@@ -5,49 +5,42 @@ using OnlineShopping.Infrastructure.IRepositories;
 
 namespace OnlineShopping.Infrastructure.Repositories;
 
-/// <summary>
-/// Category Repository
-/// </summary>
 public class CategoryRepository : ICategoryRepository
 {
-    private readonly ApplicationContext context;
+    private readonly ApplicationContext _context;
 
-    public CategoryRepository(ApplicationContext context) => this.context = context;
+    public CategoryRepository(ApplicationContext context) => _context = context;
 
     public async Task CreateCategoryRepository(Category category)
     {
-        if(category is null) throw new ArgumentNullException(nameof(category));
-
-        await context.AddAsync(category);
+        await _context.AddAsync(category);
+        await _context.SaveChangesAsync();
     }
 
-    public void DeleteCategoryRepository(Category category)
+    public async Task DeleteCategoryRepository(Category category)
     {
-        if(category is null) throw new ArgumentNullException(nameof(category));
-
-        context.Remove(category);
+        _context.Categories.Remove(category);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<IEnumerable<Category>> GetAllCategories()
     {
-        return await context.Categories.ToListAsync();
+        return await _context.Categories.ToListAsync();
     }
 
     public async Task<Category> GetCategoryById(int id)
     {
-        return await context.Categories.FirstOrDefaultAsync(x => x.CategoryId == id)
-                                                            ?? throw new ArgumentNullException(nameof(id));
+        var getById = await _context.Categories.FirstOrDefaultAsync(x => x.Id == id);
+        return getById;
     }
 
-    public async Task<bool> SaveChangesAsyncCategory()
+    public async Task<bool> SaveChangesAsync()
     {
-        return await context.SaveChangesAsync() > 0;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task UpdateCategoryRepository(Category category)
     {
-        if (category is null) throw new ArgumentNullException(nameof(category));
-
-        await context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
     }
 }

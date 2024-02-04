@@ -11,6 +11,6 @@ public interface ICategoryRepository
     Task<Category> GetCategoryById(int id);
     Task CreateCategoryRepository(Category category);
     Task UpdateCategoryRepository(Category category);
-    void DeleteCategoryRepository(Category category);
-    Task<bool> SaveChangesAsyncCategory();
+    Task DeleteCategoryRepository(Category category);
+    Task<bool> SaveChangesAsync();
 }

@@ -10,79 +10,39 @@ namespace OnlineShopping.API.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
+    public UserController(IUserService userService) => _userService = userService;
 
-    public UserController(IUserService userService)
+    [HttpPost("create")]
+    public async Task<IActionResult> CreateUser(CreateUserModel userModel)
     {
-        _userService = userService;
-    }
-
-    [HttpPost("create-user")]
-    public async Task<IActionResult> CreateUser(UserCreateModel userModel)
-    {
-        try
-        {
-            await _userService.CreateUserService(userModel);
-            return Ok(userModel);
-        }
-        catch
-        {
-            return BadRequest("user not created");
-        }
+        return Created("", await _userService.CreateUserService(userModel));
     }
 
     [HttpGet("get-all")]
     public async Task<IActionResult> GetAllUsers()
     {
-        try
-        {
-            var result = await _userService.GetAllUserService();
-            return Ok(result);
-        }
-        catch
-        {
-            return BadRequest("users not found");
-        }
+        var result = await _userService.GetAllUserService();
+        return Ok(result);
     }
 
     [HttpGet("get-by-id")]
     public async Task<IActionResult> GetUserById(int id)
     {
-        try
-        {
-            var getUser = await _userService.GetByIdUserService(id);
-            return Ok(getUser);
-        }
-        catch
-        {
-            return BadRequest("user not found");
-        }
+        var getUser = await _userService.GetByIdUserService(id);
+        return Ok(getUser);
     }
 
     [HttpDelete("delete")]
     public async Task<IActionResult> DeleteUser(int id)
     {
-        try
-        {
-            await _userService.DeleteUserService(id);
-            return Ok("user deleted");
-        }
-        catch
-        {
-            return BadRequest("user not found");
-        }
+        await _userService.DeleteUserService(id);
+        return Ok();
     }
 
     [HttpPut("update")]
     public async Task<IActionResult> UpdateUser(int id, UserUpdateModel update)
     {
-        try
-        {
-            await _userService.UpdateUserService(id, update);
-            return Ok(update);
-        }
-        catch
-        {
-            return BadRequest("user not found and not updated");
-        }
+        await _userService.UpdateUserService(id, update);
+        return Ok(update);
     }
 }

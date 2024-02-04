@@ -9,48 +9,34 @@ public class UserRepository : IUserRepository
 {
     private readonly ApplicationContext _context;
 
-    public UserRepository(ApplicationContext context)
-    {
-        _context = context;
-    }
+    public UserRepository(ApplicationContext context) => _context = context;
 
     public async Task<IEnumerable<User>> GetAllRepository()
     {
-        return await _context.Users.ToListAsync();
+        var create = await _context.Users.ToListAsync();
+        return create;
     }
 
     public async Task<User> GetByIdRepository(int id)
     {
-        var result = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
-
-        if (result == null)
-            throw new Exception($"{nameof(User)} is not found");
-
-        return result;
+        var getById = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+        return getById;
     }
 
     public async Task CreateRepository(User user)
     {
-        if (user is null) 
-            throw new ArgumentNullException(nameof(user));
-
         await _context.Users.AddAsync(user);
-
         await _context.SaveChangesAsync();
     }
 
-    public async void DeleteRepository(User user)
+    public async Task DeleteRepository(User user)
     {
         _context.Users.Remove(user);
-
         await _context.SaveChangesAsync();
     }
 
     public async Task UpdateRepository(User user)
     {
-        if (user is null) 
-            throw new ArgumentNullException(nameof(user));
-
         await _context.SaveChangesAsync();
     }
 
