@@ -4,9 +4,9 @@ namespace OnlineShopping.Businnes.IServices;
 
 public interface IWarehouseService
 {
-    Task<IEnumerable<ReadWarehouseModel>> GetAllWarehousesService();
-    Task<ReadWarehouseModel> GetWarehouseByIdService(int id);
-    Task<ReadWarehouseModel> CreateWarehouseService(CreateWarehouseModel createDTO);
-    Task UpdateWarehouseService(int id, UpdateCategoryModel updateDTO);
-    Task DeleteWarehouseService(int id);
+    Task<IEnumerable<ReadWarehouseModel>> GetAllService();
+    Task<ReadWarehouseModel> GetByIdService(int id);
+    Task<ReadWarehouseModel> CreateService(CreateWarehouseModel createDTO);
+    Task UpdateService(int id, UpdateWarehouseModel updateDTO);
+    Task DeleteService(int id);
 }

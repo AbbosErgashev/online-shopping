@@ -10,6 +10,6 @@ public class WarehouseMapper : Profile
     {
         CreateMap<Warehouse, CreateWarehouseModel>().ReverseMap();
         CreateMap<Warehouse, ReadWarehouseModel>().ReverseMap();
-        CreateMap<Warehouse, UpdateCategoryModel>().ReverseMap();
+        CreateMap<Warehouse, UpdateWarehouseModel>().ReverseMap();
     }
 }

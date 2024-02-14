@@ -11,19 +11,19 @@ public class CategoryService : ICategoryService
     private readonly ICategoryRepository _categoryRepository;
     private readonly IMapper _mapper;
 
-    public CategoryService(ICategoryRepository categoryRepository, IMapper mapper)
+    public CategoryService(ICategoryRepository category, IMapper mapper)
     {
-        _categoryRepository = categoryRepository;
+        _categoryRepository = category;
         _mapper = mapper;
     }
 
-    public async Task<CategoryReadModel> CreateCategoryService(CategoryCreateModel categoryDto)
+    public async Task<ReadCategoryModel> CreateService(CreateCategoryModel categoryDto)
     {
         try
         {
             var create = _mapper.Map<Category>(categoryDto);
-            await _categoryRepository.CreateCategoryRepository(create);
-            var mapped = _mapper.Map<CategoryReadModel>(create);
+            await _categoryRepository.CreateRepository(create);
+            var mapped = _mapper.Map<ReadCategoryModel>(create);
             return mapped;
         }
         catch
@@ -32,15 +32,16 @@ public class CategoryService : ICategoryService
         }
     }
 
-    public async Task DeleteCategoryService(int id)
+    public async Task DeleteService(int id)
     {
         try
         {
-            var delete = await _categoryRepository.GetCategoryById(id);
+            var delete = await _categoryRepository.GetById(id);
             if (delete is null)
                 throw new Exception("Category not found");
-            await _categoryRepository.DeleteCategoryRepository(delete);
-            _mapper.Map<CategoryReadModel>(delete);
+
+            await _categoryRepository.DeleteRepository(delete);
+            _mapper.Map<ReadCategoryModel>(delete);
             await _categoryRepository.SaveChangesAsync();
         }
         catch
@@ -49,12 +50,12 @@ public class CategoryService : ICategoryService
         }
     }
 
-    public async Task<IEnumerable<CategoryReadModel>> GetAllCategoriesService()
+    public async Task<IEnumerable<ReadCategoryModel>> GetAllService()
     {
         try
         {
             var getAll = await _categoryRepository.GetAllCategories();
-            var mapped = _mapper.Map<IEnumerable<CategoryReadModel>>(getAll);
+            var mapped = _mapper.Map<IEnumerable<ReadCategoryModel>>(getAll);
             return mapped;
         }
         catch
@@ -63,23 +64,25 @@ public class CategoryService : ICategoryService
         }
     }
 
-    public async Task<CategoryReadModel> GetCategoryByIdService(int id)
+    public async Task<ReadCategoryModel> GetByIdService(int id)
     {
-        var getById = await _categoryRepository.GetCategoryById(id);
+        var getById = await _categoryRepository.GetById(id);
         if (getById is null)
             throw new Exception("Category not found");
-        var mapped = _mapper.Map<CategoryReadModel>(getById);
+
+        var mapped = _mapper.Map<ReadCategoryModel>(getById);
         return mapped;
     }
 
-    public async Task UpdateCategoryService(int id, CategoryUpdateModel category)
+    public async Task UpdateService(int id, UpdateCategoryModel category)
     {
-        var update = await _categoryRepository.GetCategoryById(id);
+        var update = await _categoryRepository.GetById(id);
         if (update is null)
             throw new Exception("Category nor found");
+
         _mapper.Map(category, update);
-        await _categoryRepository.UpdateCategoryRepository(update);
-        _mapper.Map<CategoryReadModel>(update);
+        await _categoryRepository.UpdateRepository(update);
+        _mapper.Map<ReadCategoryModel>(update);
         await _categoryRepository.SaveChangesAsync();
     }
 }

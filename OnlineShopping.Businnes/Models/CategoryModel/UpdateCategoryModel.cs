@@ -2,10 +2,7 @@
 
 namespace OnlineShopping.Businnes.Models.CategoryModel;
 
-/// <summary>
-/// Category CreateCategoryRepository DTO
-/// </summary>
-public class CategoryCreateModel
+public class UpdateCategoryModel
 {
     [JsonPropertyName("name")]
     public required string Name { get; set; }

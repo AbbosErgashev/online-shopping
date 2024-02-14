@@ -4,9 +4,9 @@ namespace OnlineShopping.Businnes.IServices;
 
 public interface ICategoryService
 {
-    Task<IEnumerable<CategoryReadModel>> GetAllCategoriesService();
-    Task<CategoryReadModel> GetCategoryByIdService(int id);
-    Task<CategoryReadModel> CreateCategoryService(CategoryCreateModel category);
-    Task UpdateCategoryService(int id, CategoryUpdateModel category);
-    Task DeleteCategoryService(int id);
+    Task<IEnumerable<ReadCategoryModel>> GetAllService();
+    Task<ReadCategoryModel> GetByIdService(int id);
+    Task<ReadCategoryModel> CreateService(CreateCategoryModel category);
+    Task UpdateService(int id, UpdateCategoryModel category);
+    Task DeleteService(int id);
 }

@@ -4,10 +4,10 @@ namespace OnlineShopping.Infrastructure.IRepositories;
 
 public interface IWarehouseRepository
 {
-    Task<IEnumerable<Warehouse>> GetAllWarehousesRepository();
-    Task<Warehouse> GetWarehouseByIdRepository(int id);
-    Task CreateWarehouseRepository(Warehouse warehouse);
-    Task UpdateWarehouseRepository(Warehouse warehouse);
-    Task DeleteWarehouseRepository(Warehouse warehouse);
-    Task<bool> SaveChangesAsyncRepository();
+    Task<IEnumerable<Warehouse>> GetAllRepository();
+    Task<Warehouse> GetByIdRepository(int id);
+    Task CreateRepository(Warehouse warehouse);
+    Task UpdateRepository(Warehouse warehouse);
+    Task DeleteRepository(Warehouse warehouse);
+    Task<bool> SaveChangesAsync();
 }

@@ -2,11 +2,8 @@
 
 namespace OnlineShopping.Businnes.Models.CategoryModel;
 
-public class CategoryReadModel
+public class CreateCategoryModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 }

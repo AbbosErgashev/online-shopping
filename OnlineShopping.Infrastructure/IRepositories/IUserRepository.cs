@@ -9,5 +9,5 @@ public interface IUserRepository
     Task CreateRepository(User user);
     Task UpdateRepository(User user);
     Task DeleteRepository(User user);
-    Task<bool> SaveChangesAsyncUser();
+    Task<bool> SaveChangesAsync();
 }

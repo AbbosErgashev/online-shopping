@@ -83,6 +83,25 @@ namespace OnlineShopping.Infrastructure.Migrations
 
                     b.ToTable("Warehouses");
                 });
+
+            modelBuilder.Entity("OnlineShopping.Infrastructure.Entities.Warehouses.WarehouseProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ProductCount")
+                        .HasColumnType("numeric(20,0)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WarehouseProducts");
+                });
 #pragma warning restore 612, 618
         }
     }

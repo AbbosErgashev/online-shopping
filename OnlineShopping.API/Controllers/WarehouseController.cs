@@ -19,13 +19,13 @@ public class WarehouseController : ControllerBase
     [HttpPost("create")]
     public async Task<IActionResult> CreateWarehouse(CreateWarehouseModel createWarehouseDTO)
     {
-        return Created("", await _service.CreateWarehouseService(createWarehouseDTO));
+        return Created("", await _service.CreateService(createWarehouseDTO));
     }
 
     [HttpGet("get")]
     public async Task<IActionResult> GetAllWarehouses()
     {
-        var getAll = await _service.GetAllWarehousesService();
+        var getAll = await _service.GetAllService();
         return Ok(getAll);
     }
 
@@ -33,21 +33,21 @@ public class WarehouseController : ControllerBase
     [HttpGet("get-by-id")]
     public async Task<IActionResult> GetByIdWarehouse(int id)
     {
-        var getByid = await _service.GetWarehouseByIdService(id);
+        var getByid = await _service.GetByIdService(id);
         return Ok(getByid);
     }
 
     [HttpDelete("delete")]
     public async Task<IActionResult> DeleteWarehouse(int id)
     {
-        await _service.DeleteWarehouseService(id);
+        await _service.DeleteService(id);
         return Ok();
     }
 
     [HttpPut("update")]
-    public async Task<IActionResult> UpdateWarehouse(int id, UpdateCategoryModel updateDTO)
+    public async Task<IActionResult> UpdateWarehouse(int id, UpdateWarehouseModel updateDTO)
     {
-        await _service.UpdateWarehouseService(id, updateDTO);
+        await _service.UpdateService(id, updateDTO);
         return Ok(updateDTO);
     }
 }
