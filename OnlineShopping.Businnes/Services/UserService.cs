@@ -17,7 +17,7 @@ public class UserService : IUserService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<ReadUserModel>> GetAllUserService()
+    public async Task<IEnumerable<ReadUserModel>> GetAllService()
     {
         try
         {
@@ -31,16 +31,17 @@ public class UserService : IUserService
         }
     }
 
-    public async Task<ReadUserModel> GetByIdUserService(int id)
+    public async Task<ReadUserModel> GetByIdService(int id)
     {
         var getById = await _userRepository.GetByIdRepository(id);
         if (getById is null)
             throw new Exception("User not found");
+
         var mapped = _mapper.Map<ReadUserModel>(getById);
         return mapped;
     }
 
-    public async Task<ReadUserModel> CreateUserService(CreateUserModel userDto)
+    public async Task<ReadUserModel> CreateService(CreateUserModel userDto)
     {
         try
         {
@@ -55,31 +56,30 @@ public class UserService : IUserService
         }
     }
 
-    public async Task DeleteUserService(int userid)
+    public async Task DeleteService(int id)
     {
         try
         {
-            var getUserById = await _userRepository.GetByIdRepository(userid);
-            if (getUserById is null)
-                throw new Exception("User not found");
+            var getUserById = await _userRepository.GetByIdRepository(id);
             await _userRepository.DeleteRepository(getUserById);
             _mapper.Map<ReadUserModel>(getUserById);
-            await _userRepository.SaveChangesAsyncUser();
+            await _userRepository.SaveChangesAsync();
         }
         catch
         {
-            throw new Exception("User not deleted");
+            throw new Exception("User not found");
         }
     }
 
-    public async Task UpdateUserService(int Id, UserUpdateModel updateModel)
+    public async Task UpdateService(int Id, UpdateUserModel updateModel)
     {
         var getUserByid = await _userRepository.GetByIdRepository(Id);
         if (getUserByid is null)
             throw new Exception("User not found");
+
         _mapper.Map(updateModel, getUserByid);
         await _userRepository.UpdateRepository(getUserByid);
         _mapper.Map<ReadUserModel>(getUserByid);
-        await _userRepository.SaveChangesAsyncUser();
+        await _userRepository.SaveChangesAsync();
     }
 }

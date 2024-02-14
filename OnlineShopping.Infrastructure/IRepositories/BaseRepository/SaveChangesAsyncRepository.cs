@@ -1,7 +1,7 @@
 ﻿/*namespace OnlineShopping.Infrastructure.IRepositories.BaseRepository;
 
-public interface SaveChangesAsyncRepository
+public interface SaveChangesAsync
 {
-    Task<bool> SaveChangesAsyncRepository();
+    Task<bool> SaveChangesAsync();
 }
 */

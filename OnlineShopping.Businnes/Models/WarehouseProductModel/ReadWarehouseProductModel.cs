@@ -3,10 +3,10 @@ using System.Text.Json.Serialization;
 
 namespace OnlineShopping.Businnes.Models.WarehouseProductModel;
 
-public class ReadModel
+public class ReadWarehouseProductModel
 {
     [JsonProperty("id")]
-    public int ProductId { get; set; }
+    public int Id { get; set; }
 
     [JsonPropertyName("count")]
     public ulong ProductCount { get; set; }

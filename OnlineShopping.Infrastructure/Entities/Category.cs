@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineShopping.Infrastructure.Entities;
 
 public class Category
 {
     [Key]
-    public int Id {  get; set; }
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
     public required string Name { get; set; }
 }

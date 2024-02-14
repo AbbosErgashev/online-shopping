@@ -15,34 +15,34 @@ public class UserController : ControllerBase
     [HttpPost("create")]
     public async Task<IActionResult> CreateUser(CreateUserModel userModel)
     {
-        return Created("", await _userService.CreateUserService(userModel));
+        return Created("", await _userService.CreateService(userModel));
     }
 
     [HttpGet("get-all")]
     public async Task<IActionResult> GetAllUsers()
     {
-        var result = await _userService.GetAllUserService();
+        var result = await _userService.GetAllService();
         return Ok(result);
     }
 
     [HttpGet("get-by-id")]
     public async Task<IActionResult> GetUserById(int id)
     {
-        var getUser = await _userService.GetByIdUserService(id);
+        var getUser = await _userService.GetByIdService(id);
         return Ok(getUser);
     }
 
     [HttpDelete("delete")]
     public async Task<IActionResult> DeleteUser(int id)
     {
-        await _userService.DeleteUserService(id);
+        await _userService.DeleteService(id);
         return Ok();
     }
 
     [HttpPut("update")]
-    public async Task<IActionResult> UpdateUser(int id, UserUpdateModel update)
+    public async Task<IActionResult> UpdateUser(int id, UpdateUserModel update)
     {
-        await _userService.UpdateUserService(id, update);
+        await _userService.UpdateService(id, update);
         return Ok(update);
     }
 }

@@ -3,9 +3,9 @@ namespace OnlineShopping.Businnes.IServices;
 
 public interface IUserService
 {
-    Task<IEnumerable<ReadUserModel>> GetAllUserService();
-    Task<ReadUserModel> GetByIdUserService(int id);
-    Task<ReadUserModel> CreateUserService(CreateUserModel user);
-    Task UpdateUserService(int id, UserUpdateModel user);
-    Task DeleteUserService(int id);
+    Task<IEnumerable<ReadUserModel>> GetAllService();
+    Task<ReadUserModel> GetByIdService(int id);
+    Task<ReadUserModel> CreateService(CreateUserModel user);
+    Task UpdateService(int id, UpdateUserModel user);
+    Task DeleteService(int id);
 }

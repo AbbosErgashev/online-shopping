@@ -11,8 +11,8 @@ using OnlineShopping.Infrastructure.Datas;
 namespace OnlineShopping.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240127054924_Initial_2")]
-    partial class Initial_2
+    [Migration("20240204124956_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

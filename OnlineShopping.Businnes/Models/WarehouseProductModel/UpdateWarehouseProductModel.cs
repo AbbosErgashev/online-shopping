@@ -2,7 +2,7 @@
 
 namespace OnlineShopping.Businnes.Models.WarehouseProductModel;
 
-public class CreateModel
+public class UpdateWarehouseProductModel
 {
     [JsonPropertyName("product-count")]
     public required ulong ProductCount { get; set; }

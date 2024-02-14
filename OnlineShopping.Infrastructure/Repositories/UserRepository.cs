@@ -40,7 +40,7 @@ public class UserRepository : IUserRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> SaveChangesAsyncUser()
+    public async Task<bool> SaveChangesAsync()
     {
         return await _context.SaveChangesAsync() > 0;
     }
